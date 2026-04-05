@@ -1536,24 +1536,24 @@ AI output: ~6,000 tokens</code></pre>
 </section>
 <section class="screen animate-in" id="mod-big-picture-screen-2">
   <h2 class="screen-heading">The Assembly Line</h2>
-  <div class="flow-animation animate-in" id="mod-big-picture-flow-szu1sl" data-steps='[{"from":"llm","to":"schema","label":"AI generates JSON content","highlight":"llm"},{"from":"schema","to":"compiler","label":"Schema validates the data","highlight":"schema"},{"from":"templates","to":"compiler","label":"Templates provide HTML/CSS/JS","highlight":"templates"},{"from":"compiler","to":"output","label":"Build script assembles final course","highlight":"compiler"}]'>
-  <div class="flow-actors"><div class="flow-actor" id="mod-big-picture-flow-szu1sl-llm">
+  <div class="flow-animation animate-in" id="mod-big-picture-flow-l9359c" data-steps='[{"from":"llm","to":"schema","label":"AI generates JSON content","highlight":"llm"},{"from":"schema","to":"compiler","label":"Schema validates the data","highlight":"schema"},{"from":"templates","to":"compiler","label":"Templates provide HTML/CSS/JS","highlight":"templates"},{"from":"compiler","to":"output","label":"Build script assembles final course","highlight":"compiler"}]'>
+  <div class="flow-actors"><div class="flow-actor" id="mod-big-picture-flow-l9359c-llm">
       <div class="flow-actor-icon" style="background: var(--color-actor-1)"><span class="term" data-definition="Large Language Model — an AI system like Claude or GPT that generates text">LLM</span></div>
       <span>LLM (Claude)</span>
     </div>
-<div class="flow-actor" id="mod-big-picture-flow-szu1sl-schema">
+<div class="flow-actor" id="mod-big-picture-flow-l9359c-schema">
       <div class="flow-actor-icon" style="background: var(--color-actor-3)">SCH</div>
       <span>JSON Schema</span>
     </div>
-<div class="flow-actor" id="mod-big-picture-flow-szu1sl-compiler">
+<div class="flow-actor" id="mod-big-picture-flow-l9359c-compiler">
       <div class="flow-actor-icon" style="background: var(--color-actor-2)">BLD</div>
       <span>Build Script</span>
     </div>
-<div class="flow-actor" id="mod-big-picture-flow-szu1sl-templates">
+<div class="flow-actor" id="mod-big-picture-flow-l9359c-templates">
       <div class="flow-actor-icon" style="background: var(--color-actor-4)">TPL</div>
       <span>Templates</span>
     </div>
-<div class="flow-actor" id="mod-big-picture-flow-szu1sl-output">
+<div class="flow-actor" id="mod-big-picture-flow-l9359c-output">
       <div class="flow-actor-icon" style="background: var(--color-actor-5)">OUT</div>
       <span>HTML Output</span>
     </div></div>
@@ -1663,46 +1663,46 @@ AI output: ~6,000 tokens</code></pre>
 </section>
 <section class="screen animate-in" id="mod-architecture-screen-2">
   <h2 class="screen-heading">How They Talk</h2>
-  <div class="chat-window animate-in" id="mod-architecture-chat-07wue5" data-actors='{"llm":{"initials":"LLM","color":"var(--color-actor-1)"},"compiler":{"initials":"BLD","color":"var(--color-actor-2)"},"schema":{"initials":"SCH","color":"var(--color-actor-3)"},"templates":{"initials":"TPL","color":"var(--color-actor-4)"},"output":{"initials":"OUT","color":"var(--color-actor-5)"}}'>
+  <div class="chat-window animate-in" id="mod-architecture-chat-zdsfit" data-actors='{"llm":{"name":"LLM (Claude)","initials":"LLM","color":"var(--color-actor-1)"},"compiler":{"name":"Build Script","initials":"BLD","color":"var(--color-actor-2)"},"schema":{"name":"JSON Schema","initials":"SCH","color":"var(--color-actor-3)"},"templates":{"name":"Templates","initials":"TPL","color":"var(--color-actor-4)"},"output":{"name":"HTML Output","initials":"OUT","color":"var(--color-actor-5)"}}'>
   <div class="chat-messages"><div class="chat-message" data-msg="0" data-sender="llm" style="display:none">
       <div class="chat-avatar" style="background: var(--color-actor-1)"><span class="term" data-definition="Large Language Model — an AI system like Claude or GPT that generates text">LLM</span></div>
       <div class="chat-bubble">
-        <span class="chat-sender" style="color: var(--color-actor-1)">llm</span>
+        <span class="chat-sender" style="color: var(--color-actor-1)">LLM (Claude)</span>
         <p>I've analyzed the codebase. Here's the course content as JSON — 4 modules, 12 screens, 6 quizzes.</p>
       </div>
     </div>
 <div class="chat-message" data-msg="1" data-sender="schema" style="display:none">
       <div class="chat-avatar" style="background: var(--color-actor-3)">SCH</div>
       <div class="chat-bubble">
-        <span class="chat-sender" style="color: var(--color-actor-3)">schema</span>
+        <span class="chat-sender" style="color: var(--color-actor-3)">JSON Schema</span>
         <p>Checking... title ✓, actors ✓, modules ✓, every quiz has answers ✓. Valid!</p>
       </div>
     </div>
 <div class="chat-message" data-msg="2" data-sender="compiler" style="display:none">
       <div class="chat-avatar" style="background: var(--color-actor-2)">BLD</div>
       <div class="chat-bubble">
-        <span class="chat-sender" style="color: var(--color-actor-2)">compiler</span>
+        <span class="chat-sender" style="color: var(--color-actor-2)">Build Script</span>
         <p>Loading templates and assembling...</p>
       </div>
     </div>
 <div class="chat-message" data-msg="3" data-sender="templates" style="display:none">
       <div class="chat-avatar" style="background: var(--color-actor-4)">TPL</div>
       <div class="chat-bubble">
-        <span class="chat-sender" style="color: var(--color-actor-4)">templates</span>
+        <span class="chat-sender" style="color: var(--color-actor-4)">Templates</span>
         <p>Here's 1,391 lines of CSS and 715 lines of JS — ready.</p>
       </div>
     </div>
 <div class="chat-message" data-msg="4" data-sender="compiler" style="display:none">
       <div class="chat-avatar" style="background: var(--color-actor-2)">BLD</div>
       <div class="chat-bubble">
-        <span class="chat-sender" style="color: var(--color-actor-2)">compiler</span>
+        <span class="chat-sender" style="color: var(--color-actor-2)">Build Script</span>
         <p>Rendering modules... injecting glossary tooltips... done!</p>
       </div>
     </div>
 <div class="chat-message" data-msg="5" data-sender="output" style="display:none">
       <div class="chat-avatar" style="background: var(--color-actor-5)">OUT</div>
       <div class="chat-bubble">
-        <span class="chat-sender" style="color: var(--color-actor-5)">output</span>
+        <span class="chat-sender" style="color: var(--color-actor-5)">HTML Output</span>
         <p>I'm a self-contained HTML course! Open me in any browser.</p>
       </div>
     </div></div>
