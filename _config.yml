@@ -19,7 +19,7 @@ icon: 🤖 # the emoji used as the favicon (alternatively, provide image name in
 
 url: https://agentictaskx.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
-last_updated: false # set to true if you want to display last updated in the footer
+last_updated: true # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
 
@@ -57,7 +57,7 @@ footer_fixed: true
 search_enabled: true
 socials_in_search: true
 posts_in_search: true
-bib_search: true
+bib_search: false
 
 # Dimensions
 max_width: 930px
@@ -120,7 +120,7 @@ giscus:
   lang: en
 
 # Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
+# disqus_shortname: # put your disqus shortname
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # External sources.
