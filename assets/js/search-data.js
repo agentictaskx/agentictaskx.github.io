@@ -82,6 +82,11 @@ ninja.data = [{
           description: "Tools and utilities for building with AI agents — from a PM who ships.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/coming_soon_2/";
+            },},{id: "projects-ppt-to-course",
+          title: 'PPT-to-Course',
+          description: "Claude Code skill that converts PowerPoint or PDF slide decks into interactive single-page HTML courses with themes, quizzes, and PNG infographic export.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/ppt_to_course/";
             },},{id: "projects-tmux-tutorial",
           title: 'tmux Tutorial',
           description: "Interactive tmux tutorial with hands-on exercises, PNG training cards, and completion certificate.",
