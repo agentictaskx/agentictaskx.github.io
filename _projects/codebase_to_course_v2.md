@@ -5,6 +5,7 @@ description: A schema-driven pipeline that turns any codebase into an interactiv
 img:
 importance: 1
 category: active
+github: https://github.com/agentictaskx/codebase-to-course-v2
 ---
 
 An optimization of [Zara Zhang's](https://x.com/zarazhangrui) brilliant **codebase-to-course** skill for Claude Code. The original v1 had the AI generate entire HTML courses in one shot — beautiful output, but token-expensive. v2 separates content from presentation: the AI writes structured JSON, a build script handles all the HTML/CSS/JS assembly.
