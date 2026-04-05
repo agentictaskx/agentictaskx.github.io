@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "title": "Sample Location",
+    "caption": "Add your travel photos here! Edit _data/photos.json to add locations.",
+    "lat": 47.6062,
+    "lng": -122.3321,
+    "location": "Seattle, WA",
+    "thumbnail": "/assets/img/travel/sample.jpg",
+    "full": "/assets/img/travel/sample.jpg",
+    "date": "2026-04-04"
+  }
+]

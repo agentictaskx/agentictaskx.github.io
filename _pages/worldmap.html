@@ -1,0 +1,95 @@
+---
+layout: page
+title: world map
+permalink: /worldmap/
+description: Places I've been — photos pinned on a map.
+nav: false
+---
+
+<style>
+  #map {
+    height: 500px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    z-index: 1;
+  }
+  .leaflet-popup-content img {
+    max-width: 200px;
+    border-radius: 4px;
+  }
+  .leaflet-popup-content h4 {
+    margin: 8px 0 4px 0;
+    font-size: 14px;
+  }
+  .leaflet-popup-content p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+  }
+  .map-stats {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--global-text-color-light);
+  }
+  .map-stats span {
+    font-weight: bold;
+    color: var(--global-theme-color);
+  }
+</style>
+
+<p class="map-stats">
+  <span id="location-count">0</span> locations pinned so far
+</p>
+
+<div id="map"></div>
+
+<p class="text-center text-muted mt-2">
+  <small>Click a marker to see the photo. Data from <code>_data/photos.json</code>.</small>
+</p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="" />
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin=""></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var map = L.map('map').setView([20, 0], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+  }).addTo(map);
+
+  fetch('{{ "/assets/data/photos.json" | relative_url }}')
+    .then(function(response) {
+      if (!response.ok) throw new Error('No photos data');
+      return response.json();
+    })
+    .then(function(photos) {
+      document.getElementById('location-count').textContent = photos.length;
+
+      photos.forEach(function(photo) {
+        var popupContent = '<div>' +
+          '<img src="' + photo.thumbnail + '" alt="' + photo.title + '" loading="lazy">' +
+          '<h4>' + photo.title + '</h4>' +
+          '<p>' + photo.location + '</p>' +
+          '<p>' + photo.caption + '</p>' +
+          '</div>';
+
+        L.marker([photo.lat, photo.lng])
+          .addTo(map)
+          .bindPopup(popupContent);
+      });
+
+      if (photos.length > 0) {
+        var group = L.featureGroup(
+          photos.map(function(p) { return L.marker([p.lat, p.lng]); })
+        );
+        map.fitBounds(group.getBounds().pad(0.5));
+      }
+    })
+    .catch(function(err) {
+      console.log('No photo data loaded:', err);
+    });
+});
+</script>
