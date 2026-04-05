@@ -67,6 +67,11 @@ ninja.data = [{
           description: "Personal website and digital home — the Free Guy&#39;s base of operations.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/agentictaskx/";
+            },},{id: "projects-codebase-to-course-v2",
+          title: 'Codebase-to-Course v2',
+          description: "A schema-driven pipeline that turns any codebase into an interactive HTML course — 75% fewer tokens than v1.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/codebase_to_course_v2/";
             },},{id: "projects-agentic-memory-system",
           title: 'Agentic Memory System',
           description: "Exploring how AI agents build and maintain long-term memory — the key to agents that actually learn.",
