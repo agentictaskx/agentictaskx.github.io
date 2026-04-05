@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(photos) {
       document.getElementById('location-count').textContent = photos.length;
 
+      var markers = [];
       photos.forEach(function(photo) {
         var popupContent = '<div>' +
           '<img src="' + photo.thumbnail + '" alt="' + photo.title + '" loading="lazy">' +
@@ -76,15 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
           '<p>' + photo.caption + '</p>' +
           '</div>';
 
-        L.marker([photo.lat, photo.lng])
+        var marker = L.marker([photo.lat, photo.lng])
           .addTo(map)
           .bindPopup(popupContent);
+        markers.push(marker);
       });
 
-      if (photos.length > 0) {
-        var group = L.featureGroup(
-          photos.map(function(p) { return L.marker([p.lat, p.lng]); })
-        );
+      if (markers.length > 0) {
+        var group = L.featureGroup(markers);
         map.fitBounds(group.getBounds().pad(0.5));
       }
     })

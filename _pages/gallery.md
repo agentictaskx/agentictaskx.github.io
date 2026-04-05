@@ -15,7 +15,7 @@ nav: false
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('/assets/data/photos.json')
+  fetch('{{ "/assets/data/photos.json" | relative_url }}')
     .then(r => r.ok ? r.json() : Promise.reject())
     .then(photos => {
       if (!photos || photos.length === 0) return;
