@@ -9,11 +9,11 @@ last_name: Zhang
 contact_note: >
   Best way to reach me is via LinkedIn or the contact form below.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A guy like Movie Guy working on personal projects in agentic development and memory research.
+  Product Manager turned agentic developer. Like Guy from Free Guy, I woke up inside the system and decided to start building my own.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: agentic-development, memory-research, software-engineering, personal-projects
+keywords: product-management, agentic-development, memory-research, AI, personal-projects
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 🤖 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
@@ -31,7 +31,7 @@ back_to_top: true # set to false to disable the back to top button
 repo_theme_light: default # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
 repo_theme_dark: dark # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
 repo_trophies:
-  enabled: true
+  enabled: false
   theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
   theme_dark: gitdimmed # https://github.com/ryo-ma/github-profile-trophy
 

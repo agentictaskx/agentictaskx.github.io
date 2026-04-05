@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Dev Tooling Projects
-description: Developer tools and utilities for building better software.
+title: Agentic Dev Tools
+description: Tools and utilities for building with AI agents — from a PM who ships.
 img:
 importance: 2
 category: coming soon
 ---
 
-A collection of developer tools and utilities — from CLI helpers to workflow automation.
+A collection of agentic developer tools and utilities — from workflow automation to agent orchestration helpers. Built by a product manager who's been shipping products for a decade and now builds the tools he wishes existed.
 
 **Status:** 🚧 Coming soon
 

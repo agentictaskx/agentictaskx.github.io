@@ -1,41 +1,93 @@
 cv:
   name: Neal Zhang
-  label: Software Engineer
-  location: ""
+  label: Product Manager & Agentic Developer
+  location: Mountain View, CA
   image: ""
-  summary: Software Engineer working on agentic development and memory research. A guy like Movie Guy — building agents by day, watching films by night.
+  summary: Product Manager with 10+ years shipping AI, gaming, and education products at Microsoft, Meta, Zynga, and Age of Learning. Now building agentic systems and researching memory architectures. Like Guy from Free Guy — woke up inside the system and started building my own.
 
   social_networks:
     - network: GitHub
       username: agentictaskx
     - network: LinkedIn
-      username: nealzhang
+      username: zhangneal
+    - network: X
+      username: NealZha48958325
 
   sections:
     Experience:
-      - company: Microsoft
-        position: Software Engineer
-        location: ""
-        start_date: ""
+      - company: Microsoft AI
+        position: Principal Product Manager
+        location: Mountain View, CA
+        start_date: 2025-06
         end_date: ""
-        summary: Working on AI and developer tooling.
+        summary: Modernizing content recommendation systems with deep learning and generative modeling.
+        highlights:
+          - "Advancing deep learning modeling techniques and infrastructure for personalized user experience"
+          - "Introducing generative recommendation and ID-based sequential modeling for personalized news feed"
+
+      - company: Meta
+        position: Product Manager
+        location: Menlo Park, CA
+        start_date: 2022-03
+        end_date: 2025-05
+        summary: Led AI/ML integrity, GenAI safety, and content ecosystem optimization across Facebook, Instagram, and WhatsApp.
+        highlights:
+          - "Built end-to-end ML-powered ranking system for trends detection and personalized delivery"
+          - "Enhanced AI & ML Integrity Foundation for video integrity, quality, and safety"
+          - "Led GenAI safety for Meta AI, AI Sticker/Imagine launch powered by Llama and Emu"
+
+      - company: Age of Learning
+        position: Director of Product Management
+        location: Glendale, CA
+        start_date: 2018-10
+        end_date: 2022-03
+        summary: Led product management for Adventure Academy and ABCmouse international expansion.
+        highlights:
+          - "Led product development, curriculum design, and user progression for Adventure Academy"
+          - "Directed ABCmouse Tencent joint venture — growth, analytics, content production"
+          - "Spearheaded company growth across APAC, Europe, LATAM, North America"
+
+      - company: Zynga
+        position: Product Manager
+        location: Austin, TX
+        start_date: 2017-08
+        end_date: 2018-10
+        summary: Managed ad monetization, user acquisition, and game optimization for mobile titles.
+        highlights:
+          - "Drove revenue and engagement for Solitaire through ad monetization and UA optimization"
+          - "Led product development and competitive intelligence for Willy Wonka Slots"
+
+      - company: MobilityWare
+        position: Product Manager
+        location: Irvine, CA
+        start_date: 2015-11
+        end_date: 2017-08
+        summary: Managed social casino games and built data analytics products.
+        highlights:
+          - "Managed slots, blackjack, and card games — development through launch"
+          - "Built data product for statistics and analytics, optimizing player engagement"
 
     Skills:
-      - name: AI & Agents
+      - name: Product Management
+        level: ""
+        icon: fa-solid fa-diagram-project
+        keywords: "Product Strategy, Roadmapping, Growth, Analytics, Go-to-Market, User Acquisition"
+
+      - name: AI & ML
         level: ""
         icon: fa-solid fa-robot
-        keywords: "Agentic Systems, Memory Research, LLM Applications, AI Tooling"
+        keywords: "GenAI, Recommendation Systems, Content Integrity, ML Ranking, LLM Applications"
 
-      - name: Software Engineering
+      - name: Agentic Systems
         level: ""
-        icon: fa-solid fa-code
-        keywords: "Python, TypeScript, Cloud Infrastructure, DevOps"
+        icon: fa-solid fa-microchip
+        keywords: "AI Agents, Memory Architectures, Autonomous Systems, Tool Use"
 
     Interests:
       - name: Agentic Development
-        icon: fa-solid fa-microchip
-        keywords: "AI Agents, Autonomous Systems, Tool Use, Memory Architectures"
+        icon: fa-solid fa-bolt
+        keywords: "AI Agents, Memory Research, Autonomous Systems, Developer Tooling"
 
-      - name: Movies
-        icon: fa-solid fa-film
-        keywords: "Cinema, Film Analysis, Movie Recommendations"
+      - name: Gaming & Movies
+        icon: fa-solid fa-gamepad
+        keywords: "Game Design, Free Guy, Cinema, Interactive Entertainment"
