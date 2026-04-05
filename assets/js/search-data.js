@@ -64,17 +64,17 @@ ninja.data = [{
         },
       },{id: "projects-agentictaskx",
           title: 'AgenticTaskX',
-          description: "Personal website and digital home — built with al-folio on GitHub Pages.",
+          description: "Personal website and digital home — the Free Guy&#39;s base of operations.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/agentictaskx/";
             },},{id: "projects-agentic-memory-system",
           title: 'Agentic Memory System',
-          description: "Research project exploring how AI agents can build and maintain long-term memory.",
+          description: "Exploring how AI agents build and maintain long-term memory — the key to agents that actually learn.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/coming_soon_1/";
-            },},{id: "projects-dev-tooling-projects",
-          title: 'Dev Tooling Projects',
-          description: "Developer tools and utilities for building better software.",
+            },},{id: "projects-agentic-dev-tools",
+          title: 'Agentic Dev Tools',
+          description: "Tools and utilities for building with AI agents — from a PM who ships.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/coming_soon_2/";
             },},{
@@ -89,7 +89,14 @@ ninja.data = [{
         title: 'LinkedIn',
         section: 'Socials',
         handler: () => {
-          window.open("https://www.linkedin.com/in/nealzhang", "_blank");
+          window.open("https://www.linkedin.com/in/zhangneal", "_blank");
+        },
+      },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/NealZha48958325", "_blank");
         },
       },{
         id: 'social-rss',
