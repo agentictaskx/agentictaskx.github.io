@@ -77,6 +77,11 @@ ninja.data = [{
           description: "Tools and utilities for building with AI agents — from a PM who ships.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/coming_soon_2/";
+            },},{id: "projects-tmux-tutorial",
+          title: 'tmux Tutorial',
+          description: "Interactive tmux tutorial with hands-on exercises, PNG training cards, and completion certificate.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/tmux_tutorial/";
             },},{
         id: 'social-github',
         title: 'GitHub',
