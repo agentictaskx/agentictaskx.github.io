@@ -1,0 +1,2707 @@
+<!DOCTYPE html>
+<html lang="en" data-accent="teal" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Codebase-to-Course v2 Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================================
+   Codebase-to-Course v2 — Design System
+   Complete CSS for all course output. This file is STATIC — never regenerated.
+   ========================================================================== */
+
+/* --- FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* --- ROOT TOKENS (Light Mode) --- */
+:root {
+  /* Backgrounds */
+  --color-bg:             #FAF7F2;
+  --color-bg-warm:        #F5F0E8;
+  --color-bg-code:        #1E1E2E;
+  --color-text:           #2C2A28;
+  --color-text-secondary: #6B6560;
+  --color-text-muted:     #9E9790;
+  --color-border:         #E5DFD6;
+  --color-border-light:   #EEEBE5;
+  --color-surface:        #FFFFFF;
+  --color-surface-warm:   #FDF9F3;
+
+  /* Accent — overridden per course via data attribute */
+  --color-accent:         #D94F30;
+  --color-accent-hover:   #C4432A;
+  --color-accent-light:   #FDEEE9;
+  --color-accent-muted:   #E8836C;
+
+  /* Semantic */
+  --color-success:        #2D8B55;
+  --color-success-light:  #E8F5EE;
+  --color-error:          #C93B3B;
+  --color-error-light:    #FDE8E8;
+  --color-info:           #2A7B9B;
+  --color-info-light:     #E4F2F7;
+
+  /* Actor Colors */
+  --color-actor-1:        #D94F30;
+  --color-actor-2:        #2A7B9B;
+  --color-actor-3:        #7B6DAA;
+  --color-actor-4:        #D4A843;
+  --color-actor-5:        #2D8B55;
+
+  /* Fonts */
+  --font-display:  'Bricolage Grotesque', Georgia, serif;
+  --font-body:     'DM Sans', -apple-system, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* Type Scale (1.25 ratio) */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+
+  /* Line Heights */
+  --leading-tight:  1.15;
+  --leading-snug:   1.3;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  /* Spacing */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --content-width:      800px;
+  --content-width-wide: 1000px;
+  --nav-height:         50px;
+  --sidebar-width:      280px;
+
+  /* Radius */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 2px rgba(44, 42, 40, 0.05);
+  --shadow-md:  0 4px 12px rgba(44, 42, 40, 0.08);
+  --shadow-lg:  0 8px 24px rgba(44, 42, 40, 0.1);
+  --shadow-xl:  0 16px 48px rgba(44, 42, 40, 0.12);
+
+  /* Animations */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast:   150ms;
+  --duration-normal: 300ms;
+  --duration-slow:   500ms;
+  --stagger-delay:   120ms;
+}
+
+/* --- ACCENT THEMES --- */
+[data-accent="vermillion"] { --color-accent: #D94F30; --color-accent-hover: #C4432A; --color-accent-light: #FDEEE9; --color-accent-muted: #E8836C; }
+[data-accent="coral"]      { --color-accent: #E06B56; --color-accent-hover: #C95A47; --color-accent-light: #FDF0ED; --color-accent-muted: #E8917F; }
+[data-accent="teal"]       { --color-accent: #2A7B9B; --color-accent-hover: #226584; --color-accent-light: #E4F2F7; --color-accent-muted: #5A9DB5; }
+[data-accent="amber"]      { --color-accent: #D4A843; --color-accent-hover: #B8923A; --color-accent-light: #FDF6E6; --color-accent-muted: #E0BF6F; }
+[data-accent="forest"]     { --color-accent: #2D8B55; --color-accent-hover: #247347; --color-accent-light: #E8F5EE; --color-accent-muted: #5DAE7D; }
+
+/* --- DARK MODE --- */
+[data-theme="dark"] {
+  --color-bg:             #1A1A1E;
+  --color-bg-warm:        #222226;
+  --color-bg-code:        #111114;
+  --color-text:           #E4E0D8;
+  --color-text-secondary: #A09A92;
+  --color-text-muted:     #6B6560;
+  --color-border:         #3A3835;
+  --color-border-light:   #2E2C2A;
+  --color-surface:        #2A2A2E;
+  --color-surface-warm:   #252528;
+  --color-accent-light:   rgba(217, 79, 48, 0.15);
+  --color-success-light:  rgba(45, 139, 85, 0.15);
+  --color-error-light:    rgba(201, 59, 59, 0.15);
+  --color-info-light:     rgba(42, 123, 155, 0.15);
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background: var(--color-bg);
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(217, 79, 48, 0.03) 0%, transparent 50%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: var(--radius-full); }
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-light);
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: rgba(250, 247, 242, 0.9);
+}
+[data-theme="dark"] .nav { background: rgba(26, 26, 30, 0.9); }
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-accent);
+  transition: width 100ms linear;
+}
+
+.nav-inner {
+  max-width: var(--content-width-wide);
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+}
+
+.nav-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nav-dots {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--color-text-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  padding: 0;
+}
+.nav-dot.current {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+.nav-dot.visited {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+}
+
+/* Reading time badge */
+.reading-time {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* Dark mode toggle */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  transition: border-color var(--duration-fast);
+}
+.theme-toggle:hover { border-color: var(--color-accent); }
+
+/* Sidebar toggle (hamburger) */
+.sidebar-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  display: none;
+}
+
+/* ==========================================================================
+   SIDEBAR (Navigation TOC)
+   ========================================================================== */
+.sidebar {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--nav-height));
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border-light);
+  overflow-y: auto;
+  padding: var(--space-6) 0;
+  z-index: 900;
+  transform: translateX(-100%);
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+.sidebar.open { transform: translateX(0); }
+
+.sidebar-module {
+  padding: var(--space-2) var(--space-6);
+}
+.sidebar-module-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  cursor: pointer;
+  padding: var(--space-2) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: color var(--duration-fast);
+}
+.sidebar-module-title:hover { color: var(--color-accent); }
+.sidebar-module-title.active { color: var(--color-accent); }
+
+.sidebar-module-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  min-width: 24px;
+}
+
+.sidebar-screens {
+  padding-left: calc(var(--space-6) + 24px);
+  display: none;
+}
+.sidebar-module.expanded .sidebar-screens { display: block; }
+
+.sidebar-screen-link {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  padding: var(--space-1) 0;
+  cursor: pointer;
+  transition: color var(--duration-fast);
+  text-decoration: none;
+  border: none;
+  background: none;
+  text-align: left;
+  width: 100%;
+}
+.sidebar-screen-link:hover { color: var(--color-accent); }
+.sidebar-screen-link.active { color: var(--color-accent); font-weight: 500; }
+
+.sidebar-reading-time {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   MODULES
+   ========================================================================== */
+.module {
+  min-height: 100dvh;
+  min-height: 100vh; /* fallback */
+  scroll-snap-align: start;
+  padding: var(--space-16) var(--space-6);
+  padding-top: calc(var(--nav-height) + var(--space-12));
+}
+.module:nth-child(odd)  { background: var(--color-bg); }
+.module:nth-child(even) { background: var(--color-bg-warm); }
+
+.module-content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.module-header {
+  margin-bottom: var(--space-12);
+}
+.module-number {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: 800;
+  color: var(--color-accent);
+  opacity: 0.15;
+  line-height: var(--leading-tight);
+}
+.module-title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  margin-top: var(--space-2);
+  color: var(--color-text);
+}
+.module-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3);
+  line-height: var(--leading-normal);
+}
+.module-reading-time {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+/* Screens within modules */
+.screen {
+  margin-bottom: var(--space-16);
+}
+.screen-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  margin-bottom: var(--space-6);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   SCROLL ANIMATIONS
+   ========================================================================== */
+.animate-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+.animate-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger-children > .animate-in {
+  transition-delay: calc(var(--stagger-index, 0) * var(--stagger-delay));
+}
+
+/* ==========================================================================
+   CODE ↔ ENGLISH TRANSLATION BLOCKS
+   ========================================================================== */
+.translation-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin: var(--space-8) 0;
+}
+.translation-code {
+  background: var(--color-bg-code);
+  color: #CDD6F4;
+  padding: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  position: relative;
+  overflow-x: hidden;
+}
+.translation-code pre,
+.translation-code code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: hidden;
+}
+.translation-english {
+  background: var(--color-surface-warm);
+  padding: var(--space-6);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  border-left: 3px solid var(--color-accent);
+}
+.translation-label {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-3);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+.translation-english .translation-label {
+  position: relative;
+  top: auto;
+  right: auto;
+  display: block;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+}
+.translation-file-badge {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-mono);
+}
+.tl {
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.tl:last-child { border-bottom: none; }
+
+/* ==========================================================================
+   QUIZZES
+   ========================================================================== */
+.quiz-container {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  margin: var(--space-8) 0;
+}
+.quiz-header {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.quiz-question-block {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border-light);
+}
+.quiz-question-block:last-of-type { border-bottom: none; }
+.quiz-question {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-snug);
+}
+.scenario-context {
+  background: var(--color-bg-warm);
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+  border-left: 3px solid var(--color-info);
+}
+.scenario-label {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-info);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  transition: border-color var(--duration-fast), background var(--duration-fast);
+}
+.quiz-option:hover { border-color: var(--color-accent-muted); }
+.quiz-option.selected { border-color: var(--color-accent); background: var(--color-accent-light); }
+.quiz-option.correct { border-color: var(--color-success); background: var(--color-success-light); }
+.quiz-option.incorrect { border-color: var(--color-error); background: var(--color-error-light); }
+.quiz-option[disabled] { cursor: default; opacity: 0.8; }
+.quiz-option-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+  transition: all var(--duration-fast);
+}
+.quiz-option.selected .quiz-option-radio {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: inset 0 0 0 3px white;
+}
+.quiz-option.correct .quiz-option-radio {
+  border-color: var(--color-success);
+  background: var(--color-success);
+  box-shadow: inset 0 0 0 3px white;
+}
+.quiz-feedback {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--duration-normal), opacity var(--duration-normal), padding var(--duration-normal);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+.quiz-feedback.show {
+  max-height: 300px;
+  opacity: 1;
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-2);
+}
+.quiz-feedback.success { background: var(--color-success-light); color: var(--color-success); }
+.quiz-feedback.error { background: var(--color-error-light); color: var(--color-error); }
+.quiz-feedback.warning { background: var(--color-accent-light); color: var(--color-accent); }
+.quiz-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.quiz-btn {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--duration-fast);
+}
+.quiz-check-btn {
+  background: var(--color-accent);
+  color: white;
+}
+.quiz-check-btn:hover { background: var(--color-accent-hover); }
+.quiz-reset-btn {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+.quiz-reset-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* ==========================================================================
+   GROUP CHAT ANIMATION
+   ========================================================================== */
+.chat-window {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin: var(--space-8) 0;
+}
+.chat-messages {
+  padding: var(--space-6);
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.chat-message {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  animation: fadeSlideUp 0.3s var(--ease-out);
+}
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+.chat-bubble {
+  background: var(--color-bg);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border-top-left-radius: 4px;
+  max-width: 80%;
+}
+.chat-sender {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  display: block;
+  margin-bottom: var(--space-1);
+}
+.chat-bubble p {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+.chat-typing {
+  display: flex;
+  gap: var(--space-3);
+  padding: 0 var(--space-6) var(--space-4);
+  align-items: center;
+}
+.chat-typing-dots {
+  display: flex;
+  gap: 4px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+}
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  animation: typingBounce 1.4s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+.chat-controls {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--color-border-light);
+  align-items: center;
+  background: var(--color-surface-warm);
+}
+.chat-controls button {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  transition: all var(--duration-fast);
+}
+.chat-controls button:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.chat-progress {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   DATA FLOW ANIMATION
+   ========================================================================== */
+.flow-animation {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  margin: var(--space-8) 0;
+  text-align: center;
+}
+.flow-actors {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.flow-actor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+.flow-actor-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: white;
+  border: 3px solid transparent;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+.flow-actor.active .flow-actor-icon {
+  box-shadow: 0 0 0 3px var(--color-accent), 0 0 20px rgba(217, 79, 48, 0.2);
+  transform: scale(1.05);
+}
+.flow-actor span {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+.flow-packet {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  position: absolute;
+  opacity: 0;
+  transition: all 0.6s var(--ease-in-out);
+}
+.flow-step-label {
+  font-size: var(--text-base);
+  color: var(--color-text);
+  padding: var(--space-4);
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  margin: var(--space-4) 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flow-controls {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-4);
+}
+.flow-controls button {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  transition: all var(--duration-fast);
+}
+.flow-controls button:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.flow-progress {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   ARCHITECTURE DIAGRAM
+   ========================================================================== */
+.arch-diagram {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  margin: var(--space-8) 0;
+}
+.arch-zone {
+  padding: var(--space-4);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+.arch-zone-label {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+.arch-components {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.arch-component {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-light);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.arch-component:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+.arch-component.active {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+}
+.arch-icon { font-size: var(--text-xl); }
+.arch-description {
+  padding: var(--space-4);
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  min-height: 60px;
+  transition: all var(--duration-normal);
+}
+
+/* ==========================================================================
+   CALLOUT BOXES
+   ========================================================================== */
+.callout {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-md);
+  margin: var(--space-8) 0;
+}
+.callout-accent {
+  background: var(--color-accent-light);
+  border-left: 4px solid var(--color-accent);
+}
+.callout-info {
+  background: var(--color-info-light);
+  border-left: 4px solid var(--color-info);
+}
+.callout-warning {
+  background: var(--color-error-light);
+  border-left: 4px solid var(--color-error);
+}
+.callout-icon {
+  font-size: var(--text-2xl);
+  flex-shrink: 0;
+  line-height: 1;
+}
+.callout-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.callout-content p {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+/* ==========================================================================
+   PATTERN / FEATURE CARDS
+   ========================================================================== */
+.pattern-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+}
+.pattern-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal);
+}
+.pattern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.pattern-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: var(--space-3);
+  color: white;
+}
+.pattern-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+.pattern-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+}
+
+/* ==========================================================================
+   STEP CARDS
+   ========================================================================== */
+.step-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: var(--space-8) 0;
+}
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  flex-shrink: 0;
+}
+.step-body strong { display: block; }
+.step-body p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+/* ==========================================================================
+   ICON ROWS
+   ========================================================================== */
+.icon-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+}
+.icon-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.icon-row p { margin: 0; color: var(--color-text-secondary); font-size: var(--text-sm); }
+.icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  color: white;
+}
+
+/* ==========================================================================
+   FILE TREE
+   ========================================================================== */
+.file-tree {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  margin: var(--space-8) 0;
+}
+.ft-folder, .ft-file {
+  padding: var(--space-2) var(--space-3);
+  border-left: 2px solid var(--color-border-light);
+  margin-left: var(--space-4);
+}
+.ft-folder > .ft-name { color: var(--color-accent); font-weight: 600; }
+.ft-folder > .ft-name::before { content: '\1F4C1 '; }
+.ft-file > .ft-name::before { content: '\1F4C4 '; }
+.ft-desc {
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  margin-left: var(--space-2);
+  font-size: var(--text-xs);
+}
+.ft-children { margin-left: var(--space-4); }
+.ft-root { margin-left: 0; border-left: none; }
+
+/* ==========================================================================
+   BADGE LIST
+   ========================================================================== */
+.badge-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: var(--space-8) 0;
+}
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--duration-fast);
+}
+.badge-item:hover { border-color: var(--color-accent-muted); }
+.badge-code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background: var(--color-bg-code);
+  color: #CBA6F7;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   LAYER TOGGLE
+   ========================================================================== */
+.layer-demo {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin: var(--space-8) 0;
+}
+.layer-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.layer-tab {
+  padding: var(--space-3) var(--space-5);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: all var(--duration-fast);
+  border-bottom: 2px solid transparent;
+}
+.layer-tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+.layer-viewport {
+  padding: var(--space-6);
+  min-height: 200px;
+}
+.layer { display: none; }
+.layer.active { display: block; }
+.layer-description {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+}
+
+/* ==========================================================================
+   SPOT THE BUG
+   ========================================================================== */
+.bug-challenge {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  margin: var(--space-8) 0;
+}
+.bug-challenge h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.bug-code {
+  background: var(--color-bg-code);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+.bug-line {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background var(--duration-fast);
+  color: #CDD6F4;
+}
+.bug-line:hover { background: rgba(255, 255, 255, 0.05); }
+.bug-line.correct { background: rgba(45, 139, 85, 0.2); }
+.bug-line.incorrect { background: rgba(201, 59, 59, 0.2); }
+.line-num {
+  color: var(--color-text-muted);
+  user-select: none;
+  min-width: 24px;
+  text-align: right;
+}
+.bug-line code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.bug-feedback {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--duration-normal), opacity var(--duration-normal);
+}
+.bug-feedback.show {
+  max-height: 200px;
+  opacity: 1;
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
+  border-radius: var(--radius-sm);
+}
+.bug-feedback.success { background: var(--color-success-light); color: var(--color-success); }
+.bug-feedback.error { background: var(--color-error-light); color: var(--color-error); }
+
+/* ==========================================================================
+   DIFF VIEW (NEW in v2)
+   ========================================================================== */
+.diff-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin: var(--space-8) 0;
+}
+.diff-pane {
+  padding: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+.diff-before {
+  background: #2C1B1B;
+  color: #CDD6F4;
+}
+.diff-after {
+  background: #1B2C1B;
+  color: #CDD6F4;
+}
+.diff-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: var(--space-3);
+  display: block;
+}
+.diff-before .diff-label { color: #F38BA8; }
+.diff-after .diff-label { color: #A6E3A1; }
+.diff-line-highlight { background: rgba(166, 227, 161, 0.15); }
+.diff-description {
+  grid-column: 1 / -1;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  background: var(--color-surface-warm);
+  font-family: var(--font-body);
+}
+.diff-pane pre, .diff-pane code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   GLOSSARY TOOLTIPS
+   ========================================================================== */
+.term {
+  border-bottom: 1.5px dashed var(--color-accent-muted);
+  cursor: pointer;
+  position: relative;
+}
+.term:hover, .term.active {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.term-tooltip {
+  position: fixed;
+  background: var(--color-bg-code);
+  color: #CDD6F4;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  line-height: var(--leading-normal);
+  width: max(200px, min(320px, 80vw));
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+  z-index: 10000;
+}
+.term-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-bg-code);
+}
+.term-tooltip.visible { opacity: 1; }
+.term-tooltip.flip::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: var(--color-bg-code);
+}
+
+/* ==========================================================================
+   FLOW DIAGRAMS (static)
+   ========================================================================== */
+.flow-steps {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: var(--space-8) 0;
+}
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  min-width: 120px;
+}
+.flow-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+.flow-step p { font-size: var(--text-sm); text-align: center; margin: 0; }
+.flow-arrow {
+  font-size: var(--text-2xl);
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   SYNTAX HIGHLIGHTING (Catppuccin-inspired)
+   ========================================================================== */
+.code-keyword  { color: #CBA6F7; }
+.code-string   { color: #A6E3A1; }
+.code-function { color: #89B4FA; }
+.code-comment  { color: #6C7086; }
+.code-number   { color: #FAB387; }
+.code-property { color: #F9E2AF; }
+.code-operator { color: #94E2D5; }
+.code-tag      { color: #F38BA8; }
+.code-attr     { color: #F9E2AF; }
+.code-value    { color: #A6E3A1; }
+
+/* ==========================================================================
+   KEYFRAMES
+   ========================================================================== */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  :root {
+    --text-4xl: 1.875rem;
+    --text-5xl: 2.25rem;
+    --text-6xl: 3rem;
+  }
+  .translation-block { grid-template-columns: 1fr; }
+  .translation-english { border-left: none; border-top: 3px solid var(--color-accent); }
+  .diff-view { grid-template-columns: 1fr; }
+  .pattern-cards { grid-template-columns: 1fr 1fr; }
+  .sidebar-toggle { display: block; }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --text-4xl: 1.5rem;
+    --text-5xl: 1.875rem;
+    --text-6xl: 2.25rem;
+  }
+  .module { padding: var(--space-8) var(--space-4); }
+  .pattern-cards { grid-template-columns: 1fr; }
+  .flow-steps { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+}
+
+/* ==========================================================================
+   PRINT
+   ========================================================================== */
+@media print {
+  html { scroll-snap-type: none; }
+  .nav, .sidebar, .chat-controls, .flow-controls, .quiz-actions,
+  .theme-toggle, .sidebar-toggle { display: none !important; }
+  .module {
+    min-height: auto;
+    page-break-after: always;
+    padding: 2rem 1rem;
+  }
+  .animate-in { opacity: 1; transform: none; }
+  .chat-message { display: flex !important; }
+  .quiz-feedback.show { max-height: none; }
+  body { background: white; }
+}
+
+</style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Course navigation">
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="nav-inner">
+      <button class="sidebar-toggle" aria-label="Toggle navigation sidebar" aria-expanded="false">☰</button>
+      <span class="nav-title">How Codebase-to-Course v2 Works</span>
+      <div class="nav-controls">
+        <span class="reading-time">12 min read</span>
+        <div class="nav-dots" role="tablist" aria-label="Module navigation">
+          <button class="nav-dot" data-target="mod-big-picture" data-tooltip="The Big Idea" role="tab" aria-label="Module 1: The Big Idea"></button>
+<button class="nav-dot" data-target="mod-architecture" data-tooltip="Meet the Players" role="tab" aria-label="Module 2: Meet the Players"></button>
+<button class="nav-dot" data-target="mod-build-pipeline" data-tooltip="The Build Pipeline" role="tab" aria-label="Module 3: The Build Pipeline"></button>
+<button class="nav-dot" data-target="mod-content-design" data-tooltip="Content Design Philosophy" role="tab" aria-label="Module 4: Content Design Philosophy"></button>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" role="complementary" aria-label="Course outline">
+    <div class="sidebar-module">
+  <div class="sidebar-module-title">
+    <span class="sidebar-module-num">01</span>
+    <span>The Big Idea</span>
+    <span class="sidebar-reading-time">~3m</span>
+  </div>
+  <div class="sidebar-screens"><button class="sidebar-screen-link" data-target="mod-big-picture-screen-0">What This Tool Does</button>
+<button class="sidebar-screen-link" data-target="mod-big-picture-screen-1">v1 vs v2: The Key Difference</button>
+<button class="sidebar-screen-link" data-target="mod-big-picture-screen-2">The Assembly Line</button></div>
+</div>
+<div class="sidebar-module">
+  <div class="sidebar-module-title">
+    <span class="sidebar-module-num">02</span>
+    <span>Meet the Players</span>
+    <span class="sidebar-reading-time">~3m</span>
+  </div>
+  <div class="sidebar-screens"><button class="sidebar-screen-link" data-target="mod-architecture-screen-0">The Cast of Characters</button>
+<button class="sidebar-screen-link" data-target="mod-architecture-screen-1">File Structure</button>
+<button class="sidebar-screen-link" data-target="mod-architecture-screen-2">How They Talk</button></div>
+</div>
+<div class="sidebar-module">
+  <div class="sidebar-module-title">
+    <span class="sidebar-module-num">03</span>
+    <span>The Build Pipeline</span>
+    <span class="sidebar-reading-time">~3m</span>
+  </div>
+  <div class="sidebar-screens"><button class="sidebar-screen-link" data-target="mod-build-pipeline-screen-0">The Assembly Process</button>
+<button class="sidebar-screen-link" data-target="mod-build-pipeline-screen-1">The Renderer Pattern</button>
+<button class="sidebar-screen-link" data-target="mod-build-pipeline-screen-2">Glossary Injection</button></div>
+</div>
+<div class="sidebar-module">
+  <div class="sidebar-module-title">
+    <span class="sidebar-module-num">04</span>
+    <span>Content Design Philosophy</span>
+    <span class="sidebar-reading-time">~3m</span>
+  </div>
+  <div class="sidebar-screens"><button class="sidebar-screen-link" data-target="mod-content-design-screen-0">Who This Is For</button>
+<button class="sidebar-screen-link" data-target="mod-content-design-screen-1">The Content Rules</button>
+<button class="sidebar-screen-link" data-target="mod-content-design-screen-2">Module Curriculum Arc</button></div>
+</div>
+  </aside>
+
+  <!-- Course Modules -->
+  <main>
+    <section class="module" id="mod-big-picture" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">01</span>
+      <h1 class="module-title">The Big Idea</h1>
+      <p class="module-subtitle">Why v2 exists and what it does differently</p>
+      <div class="module-reading-time">~3 min</div>
+    </header>
+    <div class="module-body">
+      <section class="screen animate-in" id="mod-big-picture-screen-0">
+  <h2 class="screen-heading">What This Tool Does</h2>
+  <div class="prose-block">Imagine pointing an AI at any codebase and getting back a beautiful, interactive course that teaches how that code works. That's what Codebase-to-Course does.</div>
+<div class="prose-block">The original v1 (by <a href='https://x.com/zarazhangrui'>Zara Zhang</a>) had the AI generate the <strong>entire <span class="term" data-definition="The language web browsers understand — defines what appears on a webpage">HTML</span> file</strong> — all the styling, animations, quizzes, everything — in one massive output. It worked beautifully, but it was expensive.</div>
+<div class="callout callout-accent animate-in">
+  <div class="callout-icon">💡</div>
+  <div class="callout-content">
+    <strong class="callout-title">The v2 Insight</strong>
+    <p>Why have the AI regenerate the same <span class="term" data-definition="The language that makes HTML look good — colors, fonts, spacing">CSS</span> and <span class="term" data-definition="The language that makes web pages interactive">JavaScript</span> every time? The styling never changes — only the content does. v2 separates them: the AI writes structured <span class="term" data-definition="A text format for structured data — like a filing cabinet with labeled drawers">JSON</span>, and a build script assembles the final HTML from pre-built templates. Result: 75% fewer tokens.</p>
+  </div>
+</div>
+<div class="translation-block animate-in">
+  <div class="translation-code">
+    <span class="translation-label">CODE</span>
+    <div class="translation-file-badge">SKILL.md · lines 8-10</div>
+    <pre><code><span class="code-line">You do NOT generate HTML, CSS, or JavaScript.</span>
+<span class="code-line">You generate JSON that conforms to the course content schema.</span>
+<span class="code-line">The build script assembles the final course from your JSON + static templates.</span></code></pre>
+  </div>
+  <div class="translation-english">
+    <span class="translation-label">PLAIN ENGLISH</span>
+    <div class="translation-lines"><p class="tl">The AI's job is content only — no visual code</p>
+<p class="tl">Write structured data following the blueprint</p>
+<p class="tl">A separate program handles all the visual assembly</p></div>
+  </div>
+</div>
+</section>
+<section class="screen animate-in" id="mod-big-picture-screen-1">
+  <h2 class="screen-heading">v1 vs v2: The Key Difference</h2>
+  <div class="diff-view animate-in">
+  <div class="diff-pane diff-before">
+    <span class="diff-label">v1 approach (before)</span>
+    <pre><code>AI generates:
+- Course content
+- All HTML structure
+- All CSS (1400 lines)
+- All JavaScript (700 lines)
+- Glossary tooltips
+
+Total: ~25,000 tokens</code></pre>
+  </div>
+  <div class="diff-pane diff-after">
+    <span class="diff-label">v2 approach (after)</span>
+    <pre><code>AI generates:
+- Course content as JSON
+
+Build script handles:
+- HTML (from <span class="term" data-definition="A pre-built structure with placeholders to fill in">template</span>)
+- CSS (from template)
+- JavaScript (from template)
+- Glossary injection
+
+AI output: ~6,000 tokens</code></pre>
+  </div>
+  <div class="diff-description">v1 makes the AI do everything. v2 makes the AI do only the creative work and automates the rest.</div>
+</div>
+</section>
+<section class="screen animate-in" id="mod-big-picture-screen-2">
+  <h2 class="screen-heading">The Assembly Line</h2>
+  <div class="flow-animation animate-in" id="mod-big-picture-flow-szu1sl" data-steps='[{"from":"llm","to":"schema","label":"AI generates JSON content","highlight":"llm"},{"from":"schema","to":"compiler","label":"Schema validates the data","highlight":"schema"},{"from":"templates","to":"compiler","label":"Templates provide HTML/CSS/JS","highlight":"templates"},{"from":"compiler","to":"output","label":"Build script assembles final course","highlight":"compiler"}]'>
+  <div class="flow-actors"><div class="flow-actor" id="mod-big-picture-flow-szu1sl-llm">
+      <div class="flow-actor-icon" style="background: var(--color-actor-1)"><span class="term" data-definition="Large Language Model — an AI system like Claude or GPT that generates text">LLM</span></div>
+      <span>LLM (Claude)</span>
+    </div>
+<div class="flow-actor" id="mod-big-picture-flow-szu1sl-schema">
+      <div class="flow-actor-icon" style="background: var(--color-actor-3)">SCH</div>
+      <span>JSON Schema</span>
+    </div>
+<div class="flow-actor" id="mod-big-picture-flow-szu1sl-compiler">
+      <div class="flow-actor-icon" style="background: var(--color-actor-2)">BLD</div>
+      <span>Build Script</span>
+    </div>
+<div class="flow-actor" id="mod-big-picture-flow-szu1sl-templates">
+      <div class="flow-actor-icon" style="background: var(--color-actor-4)">TPL</div>
+      <span>Templates</span>
+    </div>
+<div class="flow-actor" id="mod-big-picture-flow-szu1sl-output">
+      <div class="flow-actor-icon" style="background: var(--color-actor-5)">OUT</div>
+      <span>HTML Output</span>
+    </div></div>
+  <div class="flow-step-label">Click "Next Step" to begin</div>
+  <div class="flow-controls">
+    <button class="flow-next-btn">Next Step</button>
+    <button class="flow-reset-btn">Restart</button>
+    <span class="flow-progress">Step 0 / 4</span>
+  </div>
+</div>
+</section>
+      <div class="quiz-container animate-in">
+  <div class="quiz-header">🧠 Check Your Understanding</div>
+  <div class="quiz-question-block" data-question="mod-big-picture-q0" data-correct="b" data-explanations="{&quot;correct&quot;:&quot;v2 separates content from presentation. The AI writes structured JSON, and a build script combines it with pre-built templates.&quot;,&quot;a&quot;:&quot;Both versions produce identical-looking courses.&quot;,&quot;c&quot;:&quot;Both versions work with any LLM.&quot;}">
+    
+    <h3 class="quiz-question">What is the main difference between v1 and v2?</h3>
+    <div class="quiz-options"><button class="quiz-option" data-value="a">
+        <div class="quiz-option-radio"></div>
+        <span>v2 produces better-looking courses</span>
+      </button>
+<button class="quiz-option" data-value="b">
+        <div class="quiz-option-radio"></div>
+        <span>v2 has the AI generate only JSON content, not the full HTML</span>
+      </button>
+<button class="quiz-option" data-value="c">
+        <div class="quiz-option-radio"></div>
+        <span>v2 uses a different AI model</span>
+      </button></div>
+    <div class="quiz-feedback"></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="quiz-btn quiz-check-btn">Check Answers</button>
+    <button class="quiz-btn quiz-reset-btn">Try Again</button>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<section class="module" id="mod-architecture" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">02</span>
+      <h1 class="module-title">Meet the Players</h1>
+      <p class="module-subtitle">The components that make v2 work</p>
+      <div class="module-reading-time">~3 min</div>
+    </header>
+    <div class="module-body">
+      <section class="screen animate-in" id="mod-architecture-screen-0">
+  <h2 class="screen-heading">The Cast of Characters</h2>
+  <div class="icon-rows stagger-children"><div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-1)">🤖</div>
+    <div>
+      <strong>SKILL.md</strong>
+      <p>The instruction manual for the AI — tells it how to analyze a codebase and generate content.</p>
+    </div>
+  </div>
+<div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-3)">📐</div>
+    <div>
+      <strong><span class="term" data-definition="A text format for structured data — like a filing cabinet with labeled drawers">JSON</span> Schemas</strong>
+      <p>Blueprints defining the exact shape of the AI's output — like a form with required fields.</p>
+    </div>
+  </div>
+<div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-4)">🎨</div>
+    <div>
+      <strong>Templates</strong>
+      <p>Pre-built <span class="term" data-definition="The language web browsers understand — defines what appears on a webpage">HTML</span>, <span class="term" data-definition="The language that makes HTML look good — colors, fonts, spacing">CSS</span>, and <span class="term" data-definition="The language that makes web pages interactive">JavaScript</span> — the look, feel, and interactivity. Never change.</p>
+    </div>
+  </div>
+<div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-2)">🔨</div>
+    <div>
+      <strong><span class="term" data-definition="To take source material and build it into a final product">compile</span>.js</strong>
+      <p>The build script — takes JSON + templates and assembles the final course HTML.</p>
+    </div>
+  </div></div>
+<div class="translation-block animate-in">
+  <div class="translation-code">
+    <span class="translation-label">CODE</span>
+    <div class="translation-file-badge">build/compile.js · lines 506-528</div>
+    <pre><code><span class="code-line">function assembleSingleFile(courseData) {</span>
+<span class="code-line">  const baseHtml = loadTemplate('base.html');</span>
+<span class="code-line">  const css = loadTemplate('styles.css');</span>
+<span class="code-line">  const js = loadTemplate('scripts.js');</span>
+<span class="code-line">  html = html.replace('{{modules_content}}', modulesHtml);</span></code></pre>
+  </div>
+  <div class="translation-english">
+    <span class="translation-label">PLAIN ENGLISH</span>
+    <div class="translation-lines"><p class="tl">The main assembly function — takes course data and produces one HTML file</p>
+<p class="tl">Load the page skeleton <span class="term" data-definition="A pre-built structure with placeholders to fill in">template</span></p>
+<p class="tl">Load all the visual styling</p>
+<p class="tl">Load all the interactive behavior</p>
+<p class="tl">Plug the rendered course modules into the page skeleton</p></div>
+  </div>
+</div>
+</section>
+<section class="screen animate-in" id="mod-architecture-screen-1">
+  <h2 class="screen-heading">File Structure</h2>
+  <div class="file-tree animate-in"><div class="ft-folder ft-root"><span class="ft-name">codebase-to-course-v2/</span><div class="ft-children"><div class="ft-file"><span class="ft-name">SKILL.md</span><span class="ft-desc">AI instructions</span></div>
+<div class="ft-folder"><span class="ft-name">schemas/</span><div class="ft-children"><div class="ft-file"><span class="ft-name">course-content.schema.json</span><span class="ft-desc">Course data shape</span></div>
+<div class="ft-file"><span class="ft-name">codebase-profile.schema.json</span><span class="ft-desc">Analysis data shape</span></div></div></div>
+<div class="ft-folder"><span class="ft-name">templates/</span><div class="ft-children"><div class="ft-file"><span class="ft-name">base.html</span><span class="ft-desc">Page skeleton</span></div>
+<div class="ft-file"><span class="ft-name">styles.css</span><span class="ft-desc">All styling (1,391 lines)</span></div>
+<div class="ft-file"><span class="ft-name">scripts.js</span><span class="ft-desc">All interactivity (715 lines)</span></div></div></div>
+<div class="ft-folder"><span class="ft-name">build/</span><div class="ft-children"><div class="ft-file"><span class="ft-name">compile.js</span><span class="ft-desc">The assembler (627 lines)</span></div></div></div></div></div></div>
+</section>
+<section class="screen animate-in" id="mod-architecture-screen-2">
+  <h2 class="screen-heading">How They Talk</h2>
+  <div class="chat-window animate-in" id="mod-architecture-chat-07wue5" data-actors='{"llm":{"initials":"LLM","color":"var(--color-actor-1)"},"compiler":{"initials":"BLD","color":"var(--color-actor-2)"},"schema":{"initials":"SCH","color":"var(--color-actor-3)"},"templates":{"initials":"TPL","color":"var(--color-actor-4)"},"output":{"initials":"OUT","color":"var(--color-actor-5)"}}'>
+  <div class="chat-messages"><div class="chat-message" data-msg="0" data-sender="llm" style="display:none">
+      <div class="chat-avatar" style="background: var(--color-actor-1)"><span class="term" data-definition="Large Language Model — an AI system like Claude or GPT that generates text">LLM</span></div>
+      <div class="chat-bubble">
+        <span class="chat-sender" style="color: var(--color-actor-1)">llm</span>
+        <p>I've analyzed the codebase. Here's the course content as JSON — 4 modules, 12 screens, 6 quizzes.</p>
+      </div>
+    </div>
+<div class="chat-message" data-msg="1" data-sender="schema" style="display:none">
+      <div class="chat-avatar" style="background: var(--color-actor-3)">SCH</div>
+      <div class="chat-bubble">
+        <span class="chat-sender" style="color: var(--color-actor-3)">schema</span>
+        <p>Checking... title ✓, actors ✓, modules ✓, every quiz has answers ✓. Valid!</p>
+      </div>
+    </div>
+<div class="chat-message" data-msg="2" data-sender="compiler" style="display:none">
+      <div class="chat-avatar" style="background: var(--color-actor-2)">BLD</div>
+      <div class="chat-bubble">
+        <span class="chat-sender" style="color: var(--color-actor-2)">compiler</span>
+        <p>Loading templates and assembling...</p>
+      </div>
+    </div>
+<div class="chat-message" data-msg="3" data-sender="templates" style="display:none">
+      <div class="chat-avatar" style="background: var(--color-actor-4)">TPL</div>
+      <div class="chat-bubble">
+        <span class="chat-sender" style="color: var(--color-actor-4)">templates</span>
+        <p>Here's 1,391 lines of CSS and 715 lines of JS — ready.</p>
+      </div>
+    </div>
+<div class="chat-message" data-msg="4" data-sender="compiler" style="display:none">
+      <div class="chat-avatar" style="background: var(--color-actor-2)">BLD</div>
+      <div class="chat-bubble">
+        <span class="chat-sender" style="color: var(--color-actor-2)">compiler</span>
+        <p>Rendering modules... injecting glossary tooltips... done!</p>
+      </div>
+    </div>
+<div class="chat-message" data-msg="5" data-sender="output" style="display:none">
+      <div class="chat-avatar" style="background: var(--color-actor-5)">OUT</div>
+      <div class="chat-bubble">
+        <span class="chat-sender" style="color: var(--color-actor-5)">output</span>
+        <p>I'm a self-contained HTML course! Open me in any browser.</p>
+      </div>
+    </div></div>
+  <div class="chat-typing" style="display:none">
+    <div class="chat-avatar">?</div>
+    <div class="chat-typing-dots"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
+  </div>
+  <div class="chat-controls">
+    <button class="chat-next-btn">Next Message</button>
+    <button class="chat-play-btn">Play All</button>
+    <button class="chat-reset-btn">Replay</button>
+    <span class="chat-progress">0 / 6 messages</span>
+  </div>
+</div>
+</section>
+      <div class="quiz-container animate-in">
+  <div class="quiz-header">🧠 Check Your Understanding</div>
+  <div class="quiz-question-block" data-question="mod-architecture-q0" data-correct="b" data-explanations="{&quot;correct&quot;:&quot;The CSS template controls all visual styling. Change it once, every future course uses the new font.&quot;,&quot;a&quot;:&quot;The AI doesn't control fonts — it only generates content.&quot;,&quot;c&quot;:&quot;The build script assembles, not styles.&quot;}">
+    <div class="scenario-context"><span class="scenario-label">Scenario</span><p>You want to change the font used in all courses.</p></div>
+    <h3 class="quiz-question">Which file would you edit?</h3>
+    <div class="quiz-options"><button class="quiz-option" data-value="a">
+        <div class="quiz-option-radio"></div>
+        <span>SKILL.md</span>
+      </button>
+<button class="quiz-option" data-value="b">
+        <div class="quiz-option-radio"></div>
+        <span>templates/styles.css</span>
+      </button>
+<button class="quiz-option" data-value="c">
+        <div class="quiz-option-radio"></div>
+        <span>build/compile.js</span>
+      </button></div>
+    <div class="quiz-feedback"></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="quiz-btn quiz-check-btn">Check Answers</button>
+    <button class="quiz-btn quiz-reset-btn">Try Again</button>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<section class="module" id="mod-build-pipeline" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">03</span>
+      <h1 class="module-title">The Build <span class="term" data-definition="A series of steps that data flows through, like an assembly line">Pipeline</span></h1>
+      <p class="module-subtitle">How <span class="term" data-definition="To take source material and build it into a final product">compile</span>.js turns <span class="term" data-definition="A text format for structured data — like a filing cabinet with labeled drawers">JSON</span> into a beautiful course</p>
+      <div class="module-reading-time">~3 min</div>
+    </header>
+    <div class="module-body">
+      <section class="screen animate-in" id="mod-build-pipeline-screen-0">
+  <h2 class="screen-heading">The Assembly Process</h2>
+  <div class="step-cards stagger-children"><div class="step-card animate-in">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <strong>Load & Parse</strong>
+      <p>Read course-content.json and parse it into a <span class="term" data-definition="The language that makes web pages interactive">JavaScript</span> object.</p>
+    </div>
+  </div>
+<div class="step-card animate-in">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <strong>Validate</strong>
+      <p>Check every required field — title, actors, modules, quizzes. Report errors.</p>
+    </div>
+  </div>
+<div class="step-card animate-in">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <strong>Render Modules</strong>
+      <p>For each <span class="term" data-definition="A chapter of the course focused on one topic">module</span>, render each <span class="term" data-definition="A building block of course content — prose, quiz, code translation, etc.">element</span> using type-specific renderers.</p>
+    </div>
+  </div>
+<div class="step-card animate-in">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <strong>Inject Glossary</strong>
+      <p>Scan <span class="term" data-definition="The language web browsers understand — defines what appears on a webpage">HTML</span> for technical terms and wrap them in tooltip spans.</p>
+    </div>
+  </div>
+<div class="step-card animate-in">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <strong>Assemble</strong>
+      <p>Load base <span class="term" data-definition="A pre-built structure with placeholders to fill in">template</span>, inject <span class="term" data-definition="The language that makes HTML look good — colors, fonts, spacing">CSS</span>, JS, nav, sidebar, and all modules. Write final file.</p>
+    </div>
+  </div></div>
+</section>
+<section class="screen animate-in" id="mod-build-pipeline-screen-1">
+  <h2 class="screen-heading">The <span class="term" data-definition="A function that takes data and produces HTML output">Renderer</span> Pattern</h2>
+  <div class="prose-block">The build script has a <strong>renderer for each element type</strong>. When it sees <code>{"type": "chat"}</code>, it calls the chat renderer which knows how to turn that data into HTML.</div>
+<div class="translation-block animate-in">
+  <div class="translation-code">
+    <span class="translation-label">CODE</span>
+    <div class="translation-file-badge">build/compile.js · lines 161-163</div>
+    <pre><code><span class="code-line">const Renderers = {</span>
+<span class="code-line">  prose(el) {</span>
+<span class="code-line">    return `&lt;div class=&quot;prose-block&quot;&gt;${el.content}&lt;/div&gt;`;</span></code></pre>
+  </div>
+  <div class="translation-english">
+    <span class="translation-label">PLAIN ENGLISH</span>
+    <div class="translation-lines"><p class="tl">A collection of functions, one per element type</p>
+<p class="tl">When the element type is 'prose'...</p>
+<p class="tl">Wrap the content in a styled div</p></div>
+  </div>
+</div>
+<div class="callout callout-info animate-in">
+  <div class="callout-icon">🧩</div>
+  <div class="callout-content">
+    <strong class="callout-title">15 Element Types</strong>
+    <p>prose, translation, chat, flow, callout, step_cards, pattern_cards, icon_rows, file_tree, architecture, badge_list, layer_toggle, spot_the_bug, diff_view, and custom_html.</p>
+  </div>
+</div>
+</section>
+<section class="screen animate-in" id="mod-build-pipeline-screen-2">
+  <h2 class="screen-heading">Glossary Injection</h2>
+  <div class="translation-block animate-in">
+  <div class="translation-code">
+    <span class="translation-label">CODE</span>
+    <div class="translation-file-badge">build/compile.js · lines 132-156</div>
+    <pre><code><span class="code-line">const terms = Object.keys(glossary).sort((a, b) =&gt; b.length - a.length);</span>
+<span class="code-line">const regex = new RegExp(`(?&lt;![&lt;\\w])\\b(${escapedTerm})\\b`, 'i');</span>
+<span class="code-line">html = html.replace(regex, replacement);</span></code></pre>
+  </div>
+  <div class="translation-english">
+    <span class="translation-label">PLAIN ENGLISH</span>
+    <div class="translation-lines"><p class="tl">Sort terms longest-first so 'JavaScript' matches before 'Java'</p>
+<p class="tl">Find the term as a whole word, NOT inside HTML tags</p>
+<p class="tl">Replace only the FIRST occurrence per module</p></div>
+  </div>
+</div>
+</section>
+      <div class="quiz-container animate-in">
+  <div class="quiz-header">🧠 Check Your Understanding</div>
+  <div class="quiz-question-block" data-question="mod-build-pipeline-q0" data-correct="b" data-explanations="{&quot;correct&quot;:&quot;Matching 'JavaScript' first prevents 'Java' from partially matching inside it.&quot;,&quot;a&quot;:&quot;The sort is by length, not alphabetical.&quot;,&quot;c&quot;:&quot;All terms are equal — the sort prevents partial matches.&quot;}">
+    
+    <h3 class="quiz-question">Why does the glossary sort terms longest-first?</h3>
+    <div class="quiz-options"><button class="quiz-option" data-value="a">
+        <div class="quiz-option-radio"></div>
+        <span>Alphabetical order</span>
+      </button>
+<button class="quiz-option" data-value="b">
+        <div class="quiz-option-radio"></div>
+        <span>To prevent 'Java' from matching inside 'JavaScript'</span>
+      </button>
+<button class="quiz-option" data-value="c">
+        <div class="quiz-option-radio"></div>
+        <span>Longer terms are more important</span>
+      </button></div>
+    <div class="quiz-feedback"></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="quiz-btn quiz-check-btn">Check Answers</button>
+    <button class="quiz-btn quiz-reset-btn">Try Again</button>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<section class="module" id="mod-content-design" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">04</span>
+      <h1 class="module-title">Content Design Philosophy</h1>
+      <p class="module-subtitle">Rules that make courses actually teach</p>
+      <div class="module-reading-time">~3 min</div>
+    </header>
+    <div class="module-body">
+      <section class="screen animate-in" id="mod-content-design-screen-0">
+  <h2 class="screen-heading">Who This Is For</h2>
+  <div class="prose-block">The target learner is a <strong>vibe coder</strong> — someone who builds software by talking to AI, without a CS degree. They want to understand code well enough to steer AI better.</div>
+<div class="pattern-cards stagger-children"><div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-1)">
+    <div class="pattern-icon" style="background: var(--color-actor-1)">🎯</div>
+    <h4 class="pattern-title">Steer AI Better</h4>
+    <p class="pattern-desc">Know which components exist to direct AI precisely</p>
+  </div>
+<div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+    <div class="pattern-icon" style="background: var(--color-actor-2)">🐛</div>
+    <h4 class="pattern-title">Detect AI Mistakes</h4>
+    <p class="pattern-desc">Spot hallucinations before they ship</p>
+  </div>
+<div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-3)">
+    <div class="pattern-icon" style="background: var(--color-actor-3)">🔧</div>
+    <h4 class="pattern-title">Debug When Stuck</h4>
+    <p class="pattern-desc">Escape AI bug loops by understanding what's happening</p>
+  </div>
+<div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-4)">
+    <div class="pattern-icon" style="background: var(--color-actor-4)">🗣️</div>
+    <h4 class="pattern-title">Talk to Engineers</h4>
+    <p class="pattern-desc">Learn vocabulary to describe requirements precisely</p>
+  </div></div>
+</section>
+<section class="screen animate-in" id="mod-content-design-screen-1">
+  <h2 class="screen-heading">The Content Rules</h2>
+  <div class="icon-rows stagger-children"><div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-1)">✂️</div>
+    <div>
+      <strong>Max 2-3 Sentences</strong>
+      <p>Fourth sentence? Convert to a visual <span class="term" data-definition="A building block of course content — prose, quiz, code translation, etc.">element</span>.</p>
+    </div>
+  </div>
+<div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-2)">👁️</div>
+    <div>
+      <strong>50% Visual Minimum</strong>
+      <p>Every screen must be at least half visual.</p>
+    </div>
+  </div>
+<div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-3)">🎯</div>
+    <div>
+      <strong>One Concept Per Screen</strong>
+      <p>Need more space? Add another screen.</p>
+    </div>
+  </div>
+<div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-4)">🎭</div>
+    <div>
+      <strong>Unique Metaphors</strong>
+      <p>Each concept gets its own metaphor. Never reuse.</p>
+    </div>
+  </div>
+<div class="icon-row animate-in">
+    <div class="icon-circle" style="background: var(--color-actor-5)">📋</div>
+    <div>
+      <strong>Original Code Only</strong>
+      <p>Never modify snippets. Show real code as-is.</p>
+    </div>
+  </div></div>
+</section>
+<section class="screen animate-in" id="mod-content-design-screen-2">
+  <h2 class="screen-heading"><span class="term" data-definition="A chapter of the course focused on one topic">Module</span> Curriculum Arc</h2>
+  <div class="translation-block animate-in">
+  <div class="translation-code">
+    <span class="translation-label">CODE</span>
+    <div class="translation-file-badge">SKILL.md · lines 86-97</div>
+    <pre><code><span class="code-line">| 1 | What the app does + trace a user action</span>
+<span class="code-line">| 2 | Meet the actors (components)</span>
+<span class="code-line">| 3 | How the pieces communicate</span>
+<span class="code-line">| 5 | Clever patterns</span>
+<span class="code-line">| 6 | When things break</span></code></pre>
+  </div>
+  <div class="translation-english">
+    <span class="translation-label">PLAIN ENGLISH</span>
+    <div class="translation-lines"><p class="tl">Start concrete — what happens when someone uses it</p>
+<p class="tl">Introduce the cast — which pieces exist</p>
+<p class="tl">Data flow — debug 'not showing up' problems</p>
+<p class="tl">Teach patterns learners can request from AI</p>
+<p class="tl">Build debugging intuition</p></div>
+  </div>
+</div>
+</section>
+      <div class="quiz-container animate-in">
+  <div class="quiz-header">🧠 Check Your Understanding</div>
+  <div class="quiz-question-block" data-question="mod-content-design-q0" data-correct="b" data-explanations="{&quot;correct&quot;:&quot;Max 2-3 sentences per block. Authentication as a flow diagram teaches better than paragraphs.&quot;,&quot;a&quot;:&quot;Complexity justifies better visuals, not more text.&quot;,&quot;c&quot;:&quot;5 text blocks is still text-heavy. Convert to visual elements.&quot;}">
+    <div class="scenario-context"><span class="scenario-label">Scenario</span><p>You've written 5 sentences explaining API authentication in Module 3.</p></div>
+    <h3 class="quiz-question">What should you do?</h3>
+    <div class="quiz-options"><button class="quiz-option" data-value="a">
+        <div class="quiz-option-radio"></div>
+        <span>Keep all 5 — authentication is complex</span>
+      </button>
+<button class="quiz-option" data-value="b">
+        <div class="quiz-option-radio"></div>
+        <span>Cut to 2-3 sentences and convert the rest into a step_cards or flow element</span>
+      </button>
+<button class="quiz-option" data-value="c">
+        <div class="quiz-option-radio"></div>
+        <span>Split into 5 separate prose blocks</span>
+      </button></div>
+    <div class="quiz-feedback"></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="quiz-btn quiz-check-btn">Check Answers</button>
+    <button class="quiz-btn quiz-reset-btn">Try Again</button>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <script>
+/* ==========================================================================
+   Codebase-to-Course v2 — Interactive Scripts
+   All JavaScript for interactive elements. This file is STATIC.
+   ========================================================================== */
+
+(function() {
+  'use strict';
+
+  // ==========================================================================
+  // THEME MANAGEMENT
+  // ==========================================================================
+  const ThemeManager = {
+    init() {
+      const saved = localStorage.getItem('course-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+
+      document.querySelectorAll('.theme-toggle').forEach(btn => {
+        btn.addEventListener('click', () => this.toggle());
+        this.updateLabel(btn, theme);
+      });
+    },
+    toggle() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('course-theme', next);
+      document.querySelectorAll('.theme-toggle').forEach(btn => this.updateLabel(btn, next));
+    },
+    updateLabel(btn, theme) {
+      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  };
+
+  // ==========================================================================
+  // SCROLL & NAVIGATION
+  // ==========================================================================
+  const Navigation = {
+    modules: [],
+    currentModule: 0,
+
+    init() {
+      this.modules = Array.from(document.querySelectorAll('.module'));
+      const progressBar = document.querySelector('.progress-bar');
+      const navDots = document.querySelectorAll('.nav-dot');
+
+      // Progress bar
+      window.addEventListener('scroll', () => {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+          if (progressBar) progressBar.style.width = progress + '%';
+
+          // Update current module
+          this.updateCurrentModule();
+        });
+      }, { passive: true });
+
+      // Nav dot clicks
+      navDots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          if (this.modules[i]) {
+            this.modules[i].scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { this.nextModule(); e.preventDefault(); }
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { this.prevModule(); e.preventDefault(); }
+      });
+
+      // Deep linking
+      this.handleHashNavigation();
+      window.addEventListener('hashchange', () => this.handleHashNavigation());
+    },
+
+    updateCurrentModule() {
+      const scrollPos = window.scrollY + window.innerHeight / 3;
+      let current = 0;
+      this.modules.forEach((mod, i) => {
+        if (mod.offsetTop <= scrollPos) current = i;
+      });
+
+      if (current !== this.currentModule) {
+        this.currentModule = current;
+        // Update nav dots
+        document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+          dot.classList.toggle('current', i === current);
+          if (i < current) dot.classList.add('visited');
+        });
+        // Update sidebar
+        document.querySelectorAll('.sidebar-module').forEach((sm, i) => {
+          sm.classList.toggle('expanded', i === current);
+          sm.querySelector('.sidebar-module-title')?.classList.toggle('active', i === current);
+        });
+        // Update URL hash (without scrolling)
+        const moduleId = this.modules[current]?.id;
+        if (moduleId && history.replaceState) {
+          history.replaceState(null, null, '#' + moduleId);
+        }
+      }
+    },
+
+    nextModule() {
+      if (this.currentModule < this.modules.length - 1) {
+        this.modules[this.currentModule + 1].scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+
+    prevModule() {
+      if (this.currentModule > 0) {
+        this.modules[this.currentModule - 1].scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+
+    handleHashNavigation() {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const target = document.getElementById(hash);
+        if (target) {
+          setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
+        }
+      }
+    }
+  };
+
+  // ==========================================================================
+  // SIDEBAR
+  // ==========================================================================
+  const Sidebar = {
+    init() {
+      const sidebar = document.querySelector('.sidebar');
+      const toggle = document.querySelector('.sidebar-toggle');
+      if (!sidebar || !toggle) return;
+
+      toggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', sidebar.classList.contains('open'));
+      });
+
+      // Module title clicks expand/collapse screens
+      sidebar.querySelectorAll('.sidebar-module-title').forEach(title => {
+        title.addEventListener('click', () => {
+          const mod = title.closest('.sidebar-module');
+          mod.classList.toggle('expanded');
+        });
+      });
+
+      // Screen link clicks
+      sidebar.querySelectorAll('.sidebar-screen-link').forEach(link => {
+        link.addEventListener('click', () => {
+          const targetId = link.dataset.target;
+          const target = document.getElementById(targetId);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+          // Close sidebar on mobile
+          if (window.innerWidth <= 768) sidebar.classList.remove('open');
+        });
+      });
+    }
+  };
+
+  // ==========================================================================
+  // SCROLL ANIMATIONS (IntersectionObserver)
+  // ==========================================================================
+  const ScrollAnimations = {
+    init() {
+      // Set stagger indices
+      document.querySelectorAll('.stagger-children').forEach(parent => {
+        Array.from(parent.children).forEach((child, i) => {
+          child.style.setProperty('--stagger-index', i);
+        });
+      });
+
+      // Intersection Observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+      document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+    }
+  };
+
+  // ==========================================================================
+  // QUIZZES
+  // ==========================================================================
+  const Quizzes = {
+    init() {
+      // Bind all quiz option clicks
+      document.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', () => this.selectOption(btn));
+      });
+      // Bind check/reset buttons
+      document.querySelectorAll('.quiz-check-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const container = btn.closest('.quiz-container');
+          this.checkQuiz(container);
+        });
+      });
+      document.querySelectorAll('.quiz-reset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const container = btn.closest('.quiz-container');
+          this.resetQuiz(container);
+        });
+      });
+    },
+
+    selectOption(btn) {
+      const block = btn.closest('.quiz-question-block');
+      if (btn.disabled) return;
+      block.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+      btn.classList.add('selected');
+    },
+
+    checkQuiz(container) {
+      const questions = container.querySelectorAll('.quiz-question-block');
+      let correct = 0;
+      let total = questions.length;
+
+      questions.forEach(q => {
+        const selected = q.querySelector('.quiz-option.selected');
+        const feedback = q.querySelector('.quiz-feedback');
+        const correctValue = q.dataset.correct;
+
+        if (!selected) {
+          feedback.textContent = 'Pick an answer first!';
+          feedback.className = 'quiz-feedback show warning';
+          return;
+        }
+
+        const explanations = JSON.parse(q.dataset.explanations || '{}');
+
+        if (selected.dataset.value === correctValue) {
+          correct++;
+          selected.classList.add('correct');
+          feedback.innerHTML = '<strong>Exactly!</strong> ' + (explanations.correct || '');
+          feedback.className = 'quiz-feedback show success';
+        } else {
+          selected.classList.add('incorrect');
+          q.querySelector(`[data-value="${correctValue}"]`)?.classList.add('correct');
+          const wrongExplanation = explanations[selected.dataset.value] || '';
+          feedback.innerHTML = '<strong>Not quite.</strong> ' + wrongExplanation;
+          feedback.className = 'quiz-feedback show error';
+        }
+
+        // Disable further interaction
+        q.querySelectorAll('.quiz-option').forEach(o => o.disabled = true);
+      });
+    },
+
+    resetQuiz(container) {
+      container.querySelectorAll('.quiz-option').forEach(o => {
+        o.classList.remove('selected', 'correct', 'incorrect');
+        o.disabled = false;
+      });
+      container.querySelectorAll('.quiz-feedback').forEach(f => {
+        f.className = 'quiz-feedback';
+        f.innerHTML = '';
+      });
+    }
+  };
+
+  // ==========================================================================
+  // GROUP CHAT ANIMATION
+  // ==========================================================================
+  const ChatAnimations = {
+    chats: new Map(),
+
+    init() {
+      document.querySelectorAll('.chat-window').forEach(chatWindow => {
+        const chatId = chatWindow.id || 'chat-' + Math.random().toString(36).slice(2);
+        chatWindow.id = chatId;
+        const messages = chatWindow.querySelectorAll('.chat-message');
+        const actorsData = JSON.parse(chatWindow.dataset.actors || '{}');
+
+        this.chats.set(chatId, {
+          index: 0,
+          messages: messages,
+          actors: actorsData,
+          window: chatWindow
+        });
+
+        // Hide all messages initially
+        messages.forEach(msg => msg.style.display = 'none');
+
+        // Bind controls
+        const controls = chatWindow.querySelector('.chat-controls');
+        if (controls) {
+          controls.querySelector('.chat-next-btn')?.addEventListener('click', () => this.playNext(chatId));
+          controls.querySelector('.chat-play-btn')?.addEventListener('click', () => this.playAll(chatId));
+          controls.querySelector('.chat-reset-btn')?.addEventListener('click', () => this.reset(chatId));
+        }
+      });
+    },
+
+    playNext(chatId) {
+      const chat = this.chats.get(chatId);
+      if (!chat || chat.index >= chat.messages.length) return;
+
+      const msg = chat.messages[chat.index];
+      const sender = msg.dataset.sender;
+      const typing = chat.window.querySelector('.chat-typing');
+      const typingAvatar = chat.window.querySelector('.chat-typing .chat-avatar');
+
+      // Show typing indicator
+      if (typing && typingAvatar && chat.actors[sender]) {
+        typingAvatar.textContent = chat.actors[sender].initials || sender[0].toUpperCase();
+        typingAvatar.style.background = chat.actors[sender].color || 'var(--color-actor-1)';
+        typing.style.display = 'flex';
+      }
+
+      setTimeout(() => {
+        if (typing) typing.style.display = 'none';
+        msg.style.display = 'flex';
+        msg.style.animation = 'fadeSlideUp 0.3s var(--ease-out)';
+        chat.index++;
+        this.updateProgress(chatId);
+
+        // Auto-scroll to bottom
+        const container = chat.window.querySelector('.chat-messages');
+        if (container) container.scrollTop = container.scrollHeight;
+      }, 800);
+    },
+
+    playAll(chatId) {
+      const chat = this.chats.get(chatId);
+      if (!chat) return;
+      const interval = setInterval(() => {
+        if (chat.index >= chat.messages.length) { clearInterval(interval); return; }
+        this.playNext(chatId);
+      }, 1200);
+    },
+
+    reset(chatId) {
+      const chat = this.chats.get(chatId);
+      if (!chat) return;
+      chat.index = 0;
+      chat.messages.forEach(msg => {
+        msg.style.display = 'none';
+        msg.style.animation = '';
+      });
+      this.updateProgress(chatId);
+    },
+
+    updateProgress(chatId) {
+      const chat = this.chats.get(chatId);
+      if (!chat) return;
+      const progress = chat.window.querySelector('.chat-progress');
+      if (progress) {
+        progress.textContent = `${chat.index} / ${chat.messages.length} messages`;
+      }
+    }
+  };
+
+  // ==========================================================================
+  // DATA FLOW ANIMATION
+  // ==========================================================================
+  const FlowAnimations = {
+    flows: new Map(),
+
+    init() {
+      document.querySelectorAll('.flow-animation').forEach(flowEl => {
+        const flowId = flowEl.id || 'flow-' + Math.random().toString(36).slice(2);
+        flowEl.id = flowId;
+        const stepsData = JSON.parse(flowEl.dataset.steps || '[]');
+
+        this.flows.set(flowId, {
+          step: 0,
+          steps: stepsData,
+          element: flowEl
+        });
+
+        // Bind controls
+        const controls = flowEl.querySelector('.flow-controls');
+        if (controls) {
+          controls.querySelector('.flow-next-btn')?.addEventListener('click', () => this.next(flowId));
+          controls.querySelector('.flow-reset-btn')?.addEventListener('click', () => this.reset(flowId));
+        }
+      });
+    },
+
+    next(flowId) {
+      const flow = this.flows.get(flowId);
+      if (!flow || flow.step >= flow.steps.length) return;
+
+      const step = flow.steps[flow.step];
+
+      // Remove previous highlights
+      flow.element.querySelectorAll('.flow-actor').forEach(a => a.classList.remove('active'));
+
+      // Highlight current actor
+      if (step.highlight) {
+        const actor = flow.element.querySelector(`#${flowId}-${step.highlight}`);
+        if (actor) actor.classList.add('active');
+      }
+
+      // Update label
+      const label = flow.element.querySelector('.flow-step-label');
+      if (label) label.textContent = step.label;
+
+      flow.step++;
+      this.updateProgress(flowId);
+    },
+
+    reset(flowId) {
+      const flow = this.flows.get(flowId);
+      if (!flow) return;
+      flow.step = 0;
+      flow.element.querySelectorAll('.flow-actor').forEach(a => a.classList.remove('active'));
+      const label = flow.element.querySelector('.flow-step-label');
+      if (label) label.textContent = 'Click "Next Step" to begin';
+      this.updateProgress(flowId);
+    },
+
+    updateProgress(flowId) {
+      const flow = this.flows.get(flowId);
+      if (!flow) return;
+      const progress = flow.element.querySelector('.flow-progress');
+      if (progress) {
+        progress.textContent = `Step ${flow.step} / ${flow.steps.length}`;
+      }
+    }
+  };
+
+  // ==========================================================================
+  // ARCHITECTURE DIAGRAM
+  // ==========================================================================
+  const ArchDiagram = {
+    init() {
+      document.querySelectorAll('.arch-component').forEach(comp => {
+        comp.addEventListener('click', () => {
+          const diagram = comp.closest('.arch-diagram');
+          diagram.querySelectorAll('.arch-component').forEach(c => c.classList.remove('active'));
+          comp.classList.add('active');
+          const desc = diagram.querySelector('.arch-description');
+          if (desc) desc.textContent = comp.dataset.desc || 'Click any component to learn what it does';
+        });
+      });
+    }
+  };
+
+  // ==========================================================================
+  // LAYER TOGGLE
+  // ==========================================================================
+  const LayerToggle = {
+    init() {
+      document.querySelectorAll('.layer-demo').forEach(demo => {
+        demo.querySelectorAll('.layer-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            const layerId = tab.dataset.layer;
+            // Update tabs
+            demo.querySelectorAll('.layer-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            // Update layers
+            demo.querySelectorAll('.layer').forEach(l => l.classList.remove('active'));
+            const layer = demo.querySelector(`#${layerId}`);
+            if (layer) layer.classList.add('active');
+            // Update description
+            const desc = demo.querySelector('.layer-description');
+            if (desc && tab.dataset.desc) desc.textContent = tab.dataset.desc;
+          });
+        });
+      });
+    }
+  };
+
+  // ==========================================================================
+  // SPOT THE BUG
+  // ==========================================================================
+  const SpotTheBug = {
+    init() {
+      document.querySelectorAll('.bug-line').forEach(line => {
+        line.addEventListener('click', () => {
+          const challenge = line.closest('.bug-challenge');
+          const feedback = challenge.querySelector('.bug-feedback');
+          const isBug = line.dataset.bug === 'true';
+
+          if (isBug) {
+            line.classList.add('correct');
+            feedback.innerHTML = '<strong>Found it!</strong> ' + (challenge.dataset.explanation || '');
+            feedback.className = 'bug-feedback show success';
+            // Disable further clicks
+            challenge.querySelectorAll('.bug-line').forEach(l => l.style.pointerEvents = 'none');
+          } else {
+            line.classList.add('incorrect');
+            feedback.innerHTML = line.dataset.hint || 'Not this line — look more carefully...';
+            feedback.className = 'bug-feedback show error';
+            setTimeout(() => {
+              line.classList.remove('incorrect');
+              feedback.className = 'bug-feedback';
+            }, 2000);
+          }
+        });
+      });
+    }
+  };
+
+  // ==========================================================================
+  // GLOSSARY TOOLTIPS
+  // ==========================================================================
+  const Tooltips = {
+    activeTooltip: null,
+
+    init() {
+      document.querySelectorAll('.term').forEach(term => {
+        const tip = document.createElement('span');
+        tip.className = 'term-tooltip';
+        tip.textContent = term.dataset.definition;
+
+        // Desktop hover
+        term.addEventListener('mouseenter', () => this.show(term, tip));
+        term.addEventListener('mouseleave', () => this.hide(tip));
+
+        // Mobile tap
+        term.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (tip.classList.contains('visible')) {
+            this.hide(tip);
+          } else {
+            this.show(term, tip);
+          }
+        });
+      });
+
+      // Close on click elsewhere
+      document.addEventListener('click', () => {
+        if (this.activeTooltip) {
+          this.hide(this.activeTooltip);
+        }
+      });
+    },
+
+    show(term, tip) {
+      if (this.activeTooltip && this.activeTooltip !== tip) {
+        this.activeTooltip.classList.remove('visible');
+        this.activeTooltip.remove();
+      }
+      this.position(term, tip);
+      requestAnimationFrame(() => tip.classList.add('visible'));
+      this.activeTooltip = tip;
+    },
+
+    hide(tip) {
+      tip.classList.remove('visible');
+      setTimeout(() => {
+        if (!tip.classList.contains('visible')) tip.remove();
+      }, 150);
+      if (this.activeTooltip === tip) this.activeTooltip = null;
+    },
+
+    position(term, tip) {
+      const rect = term.getBoundingClientRect();
+      const tipWidth = 300;
+      let left = rect.left + rect.width / 2 - tipWidth / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - tipWidth - 8));
+
+      document.body.appendChild(tip);
+      const tipHeight = tip.offsetHeight;
+
+      tip.style.left = left + 'px';
+      tip.style.width = tipWidth + 'px';
+
+      if (rect.top - tipHeight - 8 < 0) {
+        // Flip below
+        tip.style.top = (rect.bottom + 8) + 'px';
+        tip.classList.add('flip');
+      } else {
+        tip.style.top = (rect.top - tipHeight - 8) + 'px';
+        tip.classList.remove('flip');
+      }
+    }
+  };
+
+  // ==========================================================================
+  // DRAG AND DROP (Quizzes)
+  // ==========================================================================
+  const DragAndDrop = {
+    init() {
+      document.querySelectorAll('.dnd-container').forEach(container => {
+        const chips = container.querySelectorAll('.dnd-chip');
+        const zones = container.querySelectorAll('.dnd-zone');
+
+        // Mouse: HTML5 Drag API
+        chips.forEach(chip => {
+          chip.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', chip.dataset.answer);
+            chip.classList.add('dragging');
+          });
+          chip.addEventListener('dragend', () => chip.classList.remove('dragging'));
+        });
+
+        zones.forEach(zone => {
+          const target = zone.querySelector('.dnd-zone-target');
+          if (!target) return;
+          target.addEventListener('dragover', (e) => { e.preventDefault(); target.classList.add('drag-over'); });
+          target.addEventListener('dragleave', () => target.classList.remove('drag-over'));
+          target.addEventListener('drop', (e) => {
+            e.preventDefault();
+            target.classList.remove('drag-over');
+            const answer = e.dataTransfer.getData('text/plain');
+            const chip = container.querySelector(`[data-answer="${answer}"]`);
+            if (chip) {
+              target.textContent = chip.textContent;
+              target.dataset.placed = answer;
+              chip.classList.add('placed');
+            }
+          });
+        });
+
+        // Touch: Custom implementation
+        chips.forEach(chip => {
+          chip.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const clone = chip.cloneNode(true);
+            clone.classList.add('touch-ghost');
+            clone.style.cssText = `position:fixed;z-index:1000;pointer-events:none;left:${touch.clientX-40}px;top:${touch.clientY-20}px;`;
+            document.body.appendChild(clone);
+            chip._ghost = clone;
+            chip._answer = chip.dataset.answer;
+          }, { passive: false });
+
+          chip.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            if (chip._ghost) {
+              chip._ghost.style.left = (touch.clientX - 40) + 'px';
+              chip._ghost.style.top = (touch.clientY - 20) + 'px';
+            }
+            zones.forEach(z => {
+              const t = z.querySelector('.dnd-zone-target');
+              if (t) t.classList.remove('drag-over');
+            });
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (el && el.closest('.dnd-zone-target')) {
+              el.closest('.dnd-zone-target').classList.add('drag-over');
+            }
+          }, { passive: false });
+
+          chip.addEventListener('touchend', (e) => {
+            if (chip._ghost) { chip._ghost.remove(); chip._ghost = null; }
+            const touch = e.changedTouches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (el && el.closest('.dnd-zone-target')) {
+              const target = el.closest('.dnd-zone-target');
+              target.textContent = chip.textContent;
+              target.dataset.placed = chip._answer;
+              chip.classList.add('placed');
+            }
+          });
+        });
+
+        // Check / Reset buttons
+        container.querySelector('.dnd-check-btn')?.addEventListener('click', () => this.check(container));
+        container.querySelector('.dnd-reset-btn')?.addEventListener('click', () => this.reset(container));
+      });
+    },
+
+    check(container) {
+      container.querySelectorAll('.dnd-zone').forEach(zone => {
+        const target = zone.querySelector('.dnd-zone-target');
+        if (!target || !target.dataset.placed) return;
+        if (target.dataset.placed === zone.dataset.correct) {
+          target.classList.add('correct');
+        } else {
+          target.classList.add('incorrect');
+        }
+      });
+    },
+
+    reset(container) {
+      container.querySelectorAll('.dnd-zone-target').forEach(t => {
+        t.classList.remove('correct', 'incorrect');
+        t.textContent = 'Drop here';
+        delete t.dataset.placed;
+      });
+      container.querySelectorAll('.dnd-chip').forEach(c => c.classList.remove('placed'));
+    }
+  };
+
+  // ==========================================================================
+  // INITIALIZATION
+  // ==========================================================================
+  function init() {
+    ThemeManager.init();
+    Navigation.init();
+    Sidebar.init();
+    ScrollAnimations.init();
+    Quizzes.init();
+    ChatAnimations.init();
+    FlowAnimations.init();
+    ArchDiagram.init();
+    LayerToggle.init();
+    SpotTheBug.init();
+    Tooltips.init();
+    DragAndDrop.init();
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+</script>
+</body>
+</html>
