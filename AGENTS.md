@@ -1,16 +1,12 @@
-# Agent Guidelines for al-folio
+# Agent Guidelines
 
-A simple, clean, and responsive Jekyll theme for academics.
+This repository is Neal Zhang's personal website, built on al-folio and trimmed to the files needed for ongoing maintenance.
 
-## Quick Links by Role
+## Start Here
 
-- **Are you a coding agent?** → Read [`.github/copilot-instructions.md`](.github/copilot-instructions.md) first (tech stack, build, CI/CD, common pitfalls & solutions)
-- **Customizing the site?** → See [`.github/agents/customize.agent.md`](.github/agents/customize.agent.md)
-- **Writing documentation?** → See [`.github/agents/docs.agent.md`](.github/agents/docs.agent.md)
-- **Need setup/deployment help?** → [INSTALL.md](INSTALL.md)
-- **Troubleshooting & FAQ?** → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-- **Customization & theming?** → [CUSTOMIZE.md](CUSTOMIZE.md)
-- **Quick 5-min start?** → [QUICKSTART.md](QUICKSTART.md)
+- Read [`.github/copilot-instructions.md`](.github/copilot-instructions.md) first for build, layout, and deployment rules.
+- Read [`instruction.md`](instruction.md) for site-specific content structure and editing guidance.
+- Use [`CLAUDE.md`](CLAUDE.md) for a short repo summary and common commands.
 
 ## Essential Commands
 
@@ -34,14 +30,16 @@ docker compose down
 
 Before every commit, you **must** run these steps:
 
-1.  **Format Code:**
+1. **Format Code:**
+
     ```bash
     # (First time only)
     npm install --save-dev prettier @shopify/prettier-plugin-liquid
     # Format all files
     npx prettier . --write
     ```
-2.  **Build Locally & Verify:**
+
+2. **Build Locally & Verify:**
 
     ```bash
     # Rebuild the site
@@ -61,8 +59,8 @@ When modifying `_config.yml`, these **must be updated together**:
 
 ## Development Workflow
 
-- **Git & Commits:** For commit message format and Git practices, see [.github/GIT_WORKFLOW.md](.github/GIT_WORKFLOW.md).
-- **Code-Specific Instructions:** Consult the relevant instruction file for your code type.
+- **Git & commits:** See [.github/GIT_WORKFLOW.md](.github/GIT_WORKFLOW.md).
+- **Code-specific instructions:** Use the matching instruction file for the file type you are editing.
 
 | File Type                                     | Instruction File                                                                                |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -74,8 +72,6 @@ When modifying `_config.yml`, these **must be updated together**:
 
 ## Common Issues
 
-For troubleshooting, see:
-
-- [Common Pitfalls & Workarounds](.github/copilot-instructions.md#common-pitfalls--workarounds) in copilot-instructions.md
-- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed solutions
-- [GitHub Issues](https://github.com/alshedivat/al-folio/issues) to search for your specific problem.
+- For build and deployment pitfalls, use [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
+- For this site's structure and conventions, use [`instruction.md`](instruction.md).
+- For upstream theme behavior, check the al-folio repository if needed.
