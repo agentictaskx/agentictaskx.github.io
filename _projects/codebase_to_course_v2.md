@@ -2,7 +2,7 @@
 layout: page
 title: Codebase-to-Course v2
 description: A schema-driven pipeline that turns any codebase into an interactive HTML course — 75% fewer tokens than v1.
-img:
+img: assets/img/projects/codebase-to-course-v2.png
 importance: 1
 category: active
 github: https://github.com/agentictaskx/codebase-to-course-v2

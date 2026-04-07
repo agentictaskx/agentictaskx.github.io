@@ -2,7 +2,7 @@
 layout: page
 title: AgenticTaskX
 description: Personal website and digital home — the Free Guy's base of operations.
-img:
+img: assets/img/projects/agentictaskx.png
 importance: 1
 category: active
 github: https://github.com/agentictaskx/agentictaskx.github.io

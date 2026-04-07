@@ -2,7 +2,7 @@
 layout: page
 title: PPT-to-Course
 description: Claude Code skill that converts PowerPoint or PDF slide decks into interactive single-page HTML courses with themes, quizzes, and PNG infographic export.
-img:
+img: assets/img/projects/ppt-to-course.png
 importance: 1
 category: active
 github: https://github.com/agentictaskx/ppt-to-course
