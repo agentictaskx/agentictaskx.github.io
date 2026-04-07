@@ -240,7 +240,7 @@ importance: 1
 
 - Standard BibTeX format
 - al-folio supports custom keywords: `pdf`, `code`, `preview`, `doi`, etc.
-- Check CUSTOMIZE.md for custom bibtex keyword documentation
+- Check the BibTeX instruction file and existing entries in `_bibliography/papers.bib` for supported custom keywords and local conventions
 
 ## Trust These Instructions
 

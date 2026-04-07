@@ -108,7 +108,7 @@ CV content in **RenderCV format** (recommended approach for generating professio
 
 **Alternative Format (JSONResume):** For an alternative format, see `assets/json/resume.json` which uses the [JSONResume](https://jsonresume.org/) standard. Switch between formats using the `cv_format` frontmatter variable in `_pages/cv.md` (options: `rendercv` or `jsonresume`).
 
-**For more details:** See [CUSTOMIZE.md § Modifying the CV information](CUSTOMIZE.md#modifying-the-cv-information) for setup, switching formats, and PDF generation configuration.
+**For more details:** See `instruction.md` and the existing RenderCV files in `assets/rendercv/` for the current repo-specific CV workflow and PDF generation setup.
 
 ### citations.yml
 
@@ -165,7 +165,7 @@ Co-author information for bibliography/publications.
    {% endif %}
    ```
 
-3. Document the flag in CUSTOMIZE.md
+3. If the flag affects ongoing maintenance, document it in `instruction.md` or `README.md`
 
 ### Updating Social Media Links
 
